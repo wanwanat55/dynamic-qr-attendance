@@ -1,0 +1,20 @@
+[
+  {
+    "student_id": "65001",
+    "password": "1234",
+    "name": "wanwanat",
+    "class_name": "ปวช.1/1"
+  },
+  {
+    "student_id": "65002",
+    "password": "1234",
+    "name": "สมหญิง เรียนดี",
+    "class_name": "ปวช.1/1"
+  },
+  {
+    "student_id": "65003",
+    "password": "1234",
+    "name": "ณัฐชา ตั้งใจ",
+    "class_name": "ปวช.1/1"
+  }
+]

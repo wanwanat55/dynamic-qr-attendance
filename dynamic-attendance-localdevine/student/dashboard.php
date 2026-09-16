@@ -1,0 +1,8 @@
+<?php
+require_once '../config.php'; require_student();
+$att=read_json('attendance.json'); $mine=array_values(array_filter($att,fn($a)=>$a['student_id']===$_SESSION['student']['student_id']));
+?>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard นักเรียน</title><link rel="stylesheet" href="../assets/css/style.css"></head><body>
+<div class="wrap"><aside class="sidebar"><div class="brand">🎓 DQA Student</div><nav class="nav"><a class="active" href="dashboard.php">Dashboard</a><a href="manual.php">กรอก Token</a><a href="history.php">ประวัติของฉัน</a><a href="logout.php">ออกจากระบบ</a></nav></aside>
+<main class="main"><div class="top"><div><h1><?=htmlspecialchars($_SESSION['student']['name'])?></h1><p class="muted"><?=htmlspecialchars($_SESSION['student']['student_id'])?> • <?=htmlspecialchars($_SESSION['student']['class_name'])?></p></div><span class="badge">คิว <?=date('H:i',strtotime(current_slot_time()))?></span></div>
+<div class="cards"><div class="card"><div class="muted">เช็กชื่อทั้งหมด</div><div class="num"><?=count($mine)?></div></div><div class="card"><div class="muted">สถานะระบบ</div><div class="num">พร้อม</div></div></div><div class="panel"><h2>วิธีเช็กชื่อ</h2><p class="muted">สแกน QR ที่หน้าจอครู หากเปิดหน้าเว็บนี้จากคอมเครื่องเดียวกัน สามารถใช้เมนู “กรอก Token” เพื่อทดสอบได้</p></div></main></div></body></html>

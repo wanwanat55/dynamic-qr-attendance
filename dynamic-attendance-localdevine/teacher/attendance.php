@@ -1,0 +1,9 @@
+<?php
+require_once '../config.php'; require_teacher();
+$att=array_reverse(read_json('attendance.json'));
+?>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ประวัติ</title><link rel="stylesheet" href="../assets/css/style.css"></head><body>
+<div class="wrap"><aside class="sidebar"><div class="brand">⚡ DQA Teacher</div><nav class="nav"><a href="dashboard.php">Dashboard</a><a href="qr.php">สร้าง QR Code</a><a href="students.php">จัดการนักเรียน</a><a class="active" href="attendance.php">ประวัติเช็กชื่อ</a><a href="logout.php">ออกจากระบบ</a></nav></aside>
+<main class="main"><div class="top"><h1>ประวัติการเช็กชื่อ</h1><a class="btn" href="../api/export_csv.php">Export CSV</a></div><div class="panel"><input id="search" placeholder="ค้นหาชื่อ / รหัส / ห้อง..." oninput="filterRows()"><table><thead><tr><th>รหัส</th><th>ชื่อ</th><th>ห้อง</th><th>คิว</th><th>เวลาที่เช็ก</th><th>สถานะ</th></tr></thead><tbody id="rows">
+<?php foreach($att as $a): ?><tr><td><?=htmlspecialchars($a['student_id'])?></td><td><?=htmlspecialchars($a['student_name'])?></td><td><?=htmlspecialchars($a['class_name'])?></td><td><?=htmlspecialchars($a['slot_time'])?></td><td><?=htmlspecialchars($a['checked_at'])?></td><td><span class="badge"><?=htmlspecialchars($a['status'])?></span></td></tr><?php endforeach;?>
+</tbody></table></div></main></div><script>function filterRows(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('#rows tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?'':'none')}</script></body></html>
